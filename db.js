@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/commentsscroller', function(){
-	console.log('mongodb connected')
-})
+var url = process.env.MONGODB_URI || 'mongodb://localhost/commentsscroller'
+mongoose.connect(url)
 module.exports = mongoose
