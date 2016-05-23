@@ -9,7 +9,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/api/posts', function(req, res){
-	res.header("Access-Controll-Allow-Origin", "*")
+	res.header("Access-Control-Allow-Origin", "*")
 	Post.find(function(err, posts){
 		if(err){ return next(err) }
 		res.json(posts)
