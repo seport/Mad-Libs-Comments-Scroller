@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body style="text-align:center;" ng-app='app' ng-controller='MadlibCtrl'>
+<form>
+<input type="text" ng-model='word'/>
+<br/>
+<button ng-click='addPost()'/>Submit</button>
+</form>
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
+<script>
+var app = angular.module('app', [])
+app.controller('MadlibCtrl', function($scope, $http){
+	$scope.addPost = function(){
+		if($scope.word){
+			$http.post('/api/posts',{
+				word: $scope.word
+			}).success(function(word){
+				console.log('successfully posted ' + word)
+			})
+		}
+	}
+})
+</script>
+</body>
+</html>

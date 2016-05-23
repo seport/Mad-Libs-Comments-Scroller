@@ -5,7 +5,7 @@ var app = express()
 app.use(bodyParser.json())
 
 app.get('/', function(req, res){
-	res.sendfile(__dirname + '/index.html')
+	res.sendfile('index.html')
 })
 
 app.get('/api/posts', function(req, res){
