@@ -9,6 +9,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/api/posts', function(req, res){
+	req.header("Access-Controll-Allow-Origin", "*")
 	Post.find(function(err, posts){
 		if(err){ return next(err) }
 		res.json(posts)
@@ -24,17 +25,6 @@ app.post('/api/posts', function(req, res, next){
 		if(err){ return next(err) }
 		res.json(201, post)
 	})
-})
-
-var allowCrossDomain = function(req, res, next){
-	res.header('Access-Control-Allow-Origin', "*")
-	res.header('Access-Control-Allow-Methods', "GET")
-	res.header('Access-Control-Allow-Headers', 'Content-Type')
-	next()
-}
-
-app.configure(function(){
-	app.use(allowCrossDomain);
 })
 
 app.listen(process.env.PORT || 8080)
