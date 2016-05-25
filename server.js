@@ -5,7 +5,7 @@ var app = express()
 app.use(bodyParser.json())
 
 app.use(function(req,res,next){
-	res.header('Access-Control-Allow-Origin',"localhost:3000");
+	res.header('Access-Control-Allow-Origin',"*");
 	res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
 	res.header('Access-Control-Allow-Headers','Content-Type');
 	next();
@@ -30,6 +30,15 @@ app.post('/api/posts', function(req, res, next){
 	post.save(function(err, post){
 		if(err){ return next(err) }
 		res.json(201, post)
+	})
+})
+
+app.delete('/api/posts/:id', function(req, res, next){
+	Post.findOneAndRemove({'_id': req.params.id}, function(err, result){
+		res.json({
+			message: "successfully deleted the post",
+			post: result
+		})
 	})
 })
 
