@@ -3,12 +3,15 @@
 <head>
 </head>
 
-<body style="text-align:center;" ng-app='app' ng-controller='MadlibCtrl'>
-<form>
-<input type="text" ng-model='word'/>
+<body style="text-align:center;background-image:url('background.png');" ng-app='app' ng-controller='MadlibCtrl'>
+<a href="http://fanimadlibs.tumblr.com/"><img src="fanimadlibslovelivelogo.png" style="width:75vw;"/></a>
+<form style="margin-top: 30vh">
+<input style="width: 75vw; height: 5vw; font-size: 5vw" type="text" ng-model='word'/>
 <br/>
-<button ng-click='addPost()'/>Submit</button>
+<br/>
+<button style="width: 50vw; height: 5vw; font-size: 4vw" ng-click='addPost()'/>Submit</button>
 </form>
+<span style="position: absolute; bottom: 10px; right: 0px; left: 0px; font-family: arial; font-weight: bold; color: black;text-decoration: none;"><a href="http://fanimadlibs.tumblr.com/">Visit our tumblr!</a></span>
 
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
 <script>
