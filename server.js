@@ -24,13 +24,14 @@ app.get('/api/posts', function(req, res){
 
 var Post = require('./models/post')
 app.post('/api/posts', function(req, res, next){
-		var post = new Post({
-			word: req.body.word
-		})
-		post.save(function(err, post){
-			if(err){ return next(err) }
-			res.json(201, post)
-		})
+	
+	var post = new Post({
+		word: req.body.word
+	})
+	post.save(function(err, post){
+		if(err){ return next(err) }
+		res.json(201, post)
+	})
 })
 
 app.delete('/api/posts/:id', function(req, res, next){
