@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 </head>
 
 <body style="text-align:center;background-image:url('https://65.media.tumblr.com/ec9f3d71a73a3a06f876e7677b231567/tumblr_o7q2ocOiuD1tboox6o1_75sq.png');" ng-app='app' ng-controller='MadlibCtrl'>
@@ -16,21 +17,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
 <script>
-var app = angular.module('app', [])
-app.controller('MadlibCtrl', function($scope, $http){
-	$scope.addPost = function(){
-		if($scope.word){
-			$("#sub").prop("disabled",true);
-			$http.post('/api/posts',{
-				word: $scope.word
-			}).success(function(word){
-				console.log('successfully posted ' + word)
-				$scope.word = ""
-				$("#sub").prop("disabled",false);
-			})
-		}
-	}
-})
+// var app = angular.module('app', [])
+// app.controller('MadlibCtrl', function($scope, $http){
+// 	$scope.addPost = function(){
+// 		if($scope.word){
+// 			$("#sub").prop("disabled",true);
+// 			$http.post('/api/posts',{
+// 				word: $scope.word
+// 			}).success(function(word){
+// 				console.log('successfully posted ' + word)
+// 				$scope.word = ""
+// 				$("#sub").prop("disabled",false);
+// 			})
+// 		}
+// 	}
+// })
+
+// TODO: fix this for prod
+var socket = io.connect('http://localhost:8080');
 </script>
 </body>
 </html>
