@@ -17,24 +17,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
 <script>
-// var app = angular.module('app', [])
-// app.controller('MadlibCtrl', function($scope, $http){
-// 	$scope.addPost = function(){
-// 		if($scope.word){
-// 			$("#sub").prop("disabled",true);
-// 			$http.post('/api/posts',{
-// 				word: $scope.word
-// 			}).success(function(word){
-// 				console.log('successfully posted ' + word)
-// 				$scope.word = ""
-// 				$("#sub").prop("disabled",false);
-// 			})
-// 		}
-// 	}
-// })
-
 // TODO: fix this for prod
 var socket = io.connect('http://localhost:8080');
+
+var app = angular.module('app', [])
+app.controller('MadlibCtrl', function($scope, $http){
+	$scope.addPost = function(){
+		if($scope.word){
+			$("#sub").prop("disabled",true);
+			socket.emit('chat message', $scope.word);
+			$scope.word = ""
+			$("#sub").prop("disabled",false);
+		}
+	}
+
+	socket.on('chat message', function(msg){
+		console.log('successfully posted ' + msg)
+    });
+})
+
 </script>
 </body>
 </html>
